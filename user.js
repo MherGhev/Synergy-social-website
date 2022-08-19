@@ -1,3 +1,5 @@
+export {User};
+
 class User {
     constructor(fName, lName, birthday, password, gender) {
         this._fName = fName;
