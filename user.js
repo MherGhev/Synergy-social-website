@@ -87,10 +87,4 @@ class User {
 
 }
 
-let mher = new User("Mher", "Ghevondyan", new Date(2003, 11, 30), "12345678", "male");
-let narek = new User("Narek", "Ghevondyan", new Date(1998, 11, 11), "12345678", "male");
-let lala = new User("Lala", "Shahnazaryan", new Date(1972, 5, 5), "12345678", "female");
-let usr2 = new User("username", "userSurname", new Date(1, 1, 1), "11111111", "other");
-
-
 module.exports = User;
