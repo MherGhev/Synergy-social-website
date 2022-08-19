@@ -1,7 +1,4 @@
-import {User} from 'user.js';
-
 let users = Object.keys(localStorage);
-
 
 function register() {
     event.preventDefault();
@@ -14,44 +11,27 @@ function register() {
     let confirmPassword = document.getElementById("registrationConfirmPassword").value;
     let termsCheckbox = document.getElementById("registrationTermsCheckbox");
 
-    if (!termsAndConditions(termsCheckbox)) {
-        alert("Please confirm they you are agree with terms and conditions")
-    }
-
-    if (!isValidUsername(username)) {
-        alert("This username is already takes, please choose another one");
-    }
-
-
-    if (!passwordConfirmPassword(password, confirmPassword)) {
-        alert("passwords are not the same")
-    }
-
-    if (!isValidPassword(password)) {
-        alert("input password")
-    }
-
-    if (!isValidDate(birthday)) {
-        alert("insert valid date")
-    }
 
     if (!isValidFName(fName)) {
         alert("please insert your first name")
-    }
-
-    if (!isValidLName(lName)) {
+    } else if (!isValidLName(lName)) {
         alert("please insert your last name")
-    }
-
-
-    if (isValidUsername(username) && passwordConfirmPassword(password, confirmPassword)
-        && isValidDate(birthday) && termsAndConditions(termsCheckbox)
-        && isValidPassword(password) && isValidLName(lName) && isValidFName(isValidFName()) ) {
-        console.log("everything is okay");
-        let user = new User(fName, lName, username, birthday, password, confirmPassword, termsCheckbox);
+    } else if (!isValidUsername(username)) {
+        alert("This username is already taken, please choose another one");
+    } else if (!isValidDate(birthday)) {
+        alert("insert valid date")
+    } else if (!isValidPassword(password)) {
+        alert("input password")
+    } else if (!passwordConfirmPassword(password, confirmPassword)) {
+        alert("passwords are not the same")
+    } else if (!termsAndConditions(termsCheckbox)) {
+        alert("Please confirm that you are agree with terms and conditions")
+    } else {
+        let user = new User(fName, lName, username, birthday, password);
         localStorage.setItem(username, JSON.stringify(user));
     }
 }
+
 
 function termsAndConditions(checkbox) {
     return checkbox.checked;
@@ -88,19 +68,6 @@ function isValidLName(lName) {
     return lName !== "";
 }
 
-
-
-
-// function User(fName, lName, username, birthdate, password, confirmPassword, termsCheckbox) {
-//     this.fName = fName;
-//     this.lName = lName;
-//     this.username = username;
-//     this.birthdate= birthdate;
-//     this.password = password;
-//     this.confirmPassword = confirmPassword;
-//     this.termsCheckbox = termsCheckbox;
-// }
-
 function logIn() {
     event.preventDefault();
     let username = document.getElementById("loginUsername").value;
@@ -116,7 +83,6 @@ function logIn() {
     if (!isLoggedIn) {
         alert("your log in or password is incorrect");
     }
-
 }
 
 

@@ -1,9 +1,9 @@
-export {User};
 
 class User {
-    constructor(fName, lName, birthday, password, gender) {
+    constructor(fName, lName, username, birthday, password, gender) {
         this._fName = fName;
         this._lName = lName;
+        this.username = username;
         this._birthday = birthday;
         this._password = password;
         this._gender = gender;
@@ -83,10 +83,5 @@ class User {
         }
     }
 
-    createChat = function () {
-
-    }
-
 }
 
-module.exports = User;
