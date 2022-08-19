@@ -1,7 +1,8 @@
 class User {
-    constructor(fName, lName, birthday, password, gender) {
+    constructor(fName, lName, username, birthday, password, gender) {
         this._fName = fName;
         this._lName = lName;
+        this._username = username
         this._birthday = birthday;
         this._password = password;
         this._gender = gender;
@@ -9,7 +10,11 @@ class User {
         this.followings = [];
         this.posts = [];
         this.chats = [];
+        User.userArray.push(this);
     }
+ 
+    static userArray = [];
+
     get fName() {
         return this._fName;
     }
@@ -21,6 +26,12 @@ class User {
     }
     set lName(newLName) {
         this._lName = newLName;
+    }
+    get username() {
+        return this._username;
+    }
+    set username(newUsername) {
+        this._username = newUsername;
     }
     get birthday() {
         return this._birthday;
@@ -80,11 +91,5 @@ class User {
             console.log("No such post.");
         }
     }
-
-    createChat = function () {
-
-    }
-
 }
 
-module.exports = User;
