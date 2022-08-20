@@ -1,13 +1,15 @@
 class Post {
-    constructor(user, pic, text) {
-        this.user = user;
+    constructor(username, pic, text) {
+        this.username = username;
         this.content = new Content(pic, text);
         this.likes = 0;
         this.usersLiked = []
         this.date = new Date();
         Post.postArray.push(this);
+        this.id = Post.id++;
     }
     static postArray = [];
+    static id = 0;
 }
 
 
@@ -50,15 +52,12 @@ function post() {
     let postImg = document.getElementById("post-image");
     let postText = document.getElementById("post-description");
     if (postImg.src === "" && postText.value === "") {
-        document.getElementById("popup").style.border = "1px solid red";
+        document.getElementById("popup").style = "border-color: red";
     } else {
         let haykaz = new User("Haykaz", "Martirosyan", new Date(1970, 12, 23), "haykazhaykaz", "male");
-        haykaz.addPost(new Post(haykaz, postImg.src, postText.value));
-        console.log(Post.postArray)
+        haykaz.addPost(new Post(haykaz.username, postImg.src, postText.value));
         localStorage.setItem("posts", JSON.stringify(Post.postArray));
-        console.log(localStorage);
         togglePopup();
+        console.log(JSON.parse(localStorage.getItem("posts")));
     }
 }
-
-console.log(JSON.parse(localStorage.getItem("posts")))

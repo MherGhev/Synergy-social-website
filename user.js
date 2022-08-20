@@ -1,15 +1,19 @@
 class User {
-    constructor(fName, lName, birthday, password, gender) {
+    constructor(fName, lName, username, birthday, password, gender) {
         this.fName = fName;
         this.lName = lName;
+        this.username = username
         this.birthday = birthday;
         this.password = password;
         this.gender = gender;
+        this.profileImage = "../pictures/profile.png"
         this.followers = [];
         this.followings = [];
         this.posts = [];
         this.chats = [];
+        User.userArray.push(this);
     }
+    static userArray = [];
 
     addFollower = function (newFollower) {
         this.followers.push(newFollower);

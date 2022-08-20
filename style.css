@@ -33,13 +33,10 @@
 
 #post-image{
     max-height: 400px;
-    width: auto;
+    max-width: 100%;
     align-self: center;
 }
 
-::-webkit-file-upload-button{
-    background-color:red;
-}
 #post-button{
     align-self:flex-end;
     color: white;
@@ -56,6 +53,7 @@
     resize: none;
     height: 100px;
 }
+
 
 #post-image-input{
     color: transparent;
