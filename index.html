@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/28caf18a35.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+    <button onclick="togglePopup()">Add Post</button>
+    <div id="popup-wrapper" style="display: none">
+        <div id="popup">
+            <div id="popup-header">
+                <h2>What's on your mind?</h2>
+                <i class="fa-solid fa-x" id="popup-x" onclick="togglePopup()"></i>
+            </div>
+            <label>
+                Add an image
+                <input type="file" accept="image/png, image/jpeg" id="post-image-input" onchange="loadFile(event)">
+            </label>
+            <img id="post-image">
+            <textarea id="post-description"></textarea>
+            <button id="post-button" onclick="post()">Post</button>
+        </div>
+    </div>
+
+    <script src="user.js"></script>
+    <script src="post.js"></script>
+</body>
+
+</html>
