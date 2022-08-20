@@ -1,11 +1,11 @@
 class User {
     constructor(fName, lName, username, birthday, password, gender) {
-        this._fName = fName;
-        this._lName = lName;
-        this._username = username
-        this._birthday = birthday;
-        this._password = password;
-        this._gender = gender;
+        this.fName = fName;
+        this.lName = lName;
+        this.username = username
+        this.birthday = birthday;
+        this.password = password;
+        this.gender = gender;
         this.followers = [];
         this.followings = [];
         this.posts = [];
@@ -14,49 +14,6 @@ class User {
     }
  
     static userArray = [];
-
-    get fName() {
-        return this._fName;
-    }
-    set fName(newFName) {
-        this._fName = newFName;
-    }
-    get lName() {
-        return this._lName;
-    }
-    set lName(newLName) {
-        this._lName = newLName;
-    }
-    get username() {
-        return this._username;
-    }
-    set username(newUsername) {
-        this._username = newUsername;
-    }
-    get birthday() {
-        return this._birthday;
-    }
-    set birthday(newBirthday) {
-        if (newBirthday instanceof Date) {
-            this._birthday = newBirthday;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    get password() {
-        return this._password;
-    }
-    set password(newPassword) {
-        this._password = newPassword;
-    }
-    get gender() {
-        return this._gender;
-    }
-    set gender(newGender) {
-        this._gender = newGender;
-    }
-
 
     addFollower = function (newFollower) {
         this.followers.push(newFollower);
