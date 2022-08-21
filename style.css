@@ -72,6 +72,11 @@ main {
     cursor: pointer;
 }
 
+.page-header{
+    position: fixed;
+    z-index: 2;
+}
+
 
 
 /* Profile image header */
