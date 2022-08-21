@@ -91,6 +91,7 @@ function changeTheme() {
 
 let header_username=document.getElementById("header-username")
 let profile_img=document.getElementById("profile-pic")
+const logo=document.querySelector(".logo")
 
 header_username.innerHTML=`${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
 profile_img.src=`${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
@@ -98,5 +99,8 @@ profile_img.src=`${JSON.parse(localStorage.getItem("loggedInUser")).profileImage
 let logout=document.querySelector(".logout-btn")
 
 logout.addEventListener("click",()=>{
+    window.location.href="./loginPage/index.html"
+})
+logo.addEventListener("click",()=>{
     window.location.href="./timeline.html"
 })
