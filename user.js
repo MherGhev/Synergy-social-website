@@ -52,3 +52,15 @@ class User {
         }
     }
 }
+
+
+let loggedInUser= new User("Haykaz", "Martirosyan", new Date(1970, 12, 23), "haykazhaykaz", "male");
+let esim1 = new User("name1", "lastName1","esim1", new Date(1970, 12, 23), "12345", "male");
+let esim2 = new User("name2", "lastName2", "esim2",new Date(1970, 12, 23), "12345", "male");
+let esim3 = new User("name3", "lastName3", "esim3",new Date(1970, 12, 23), "12345", "male");
+let esim4 = new User("name4", "lastName4", "esim4",new Date(1970, 12, 23), "12345", "male");
+
+loggedInUser.addFollower(esim1);
+loggedInUser.addFollower(esim2);
+loggedInUser.addFollower(esim3);
+loggedInUser.addFollower(esim4);
