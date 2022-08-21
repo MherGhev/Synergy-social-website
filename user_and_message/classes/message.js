@@ -6,4 +6,3 @@ class Message{
         this.date = new Date();
     }
 }
-
