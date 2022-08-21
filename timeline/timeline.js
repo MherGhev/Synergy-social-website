@@ -21,20 +21,20 @@ searchBtn.addEventListener("click",()=>{
             occurence.addEventListener("click", e => {
                 for (let user of JSON.parse(localStorage.getItem("users"))) {
                     if (e.target.id == user.username) {
-                        if (loggedInUser.followers.indexOf(user) == -1) {
+                        if (loggedInUser.followings.indexOf(user.username) == -1) {
+                            console.log(loggedInUser)
                             console.log("followed")
                             occurence.innerHTML = "Unfollow"
-                            loggedInUser.addFollower(user)
+                            follow(loggedInUser,user)
                         } else {
                             console.log("unfollowed")
                             occurence.innerHTML = "Follow"
-                            loggedInUser.unFollow(user)
+                            unFollow(loggedInUser,user)
                         }
                     }
                 }
             })
         })
-
 
         document.querySelectorAll(".message").forEach(occurence=>{
             occurence.addEventListener("click",e=>{
@@ -69,7 +69,7 @@ const displayPosts = (postsArr) => {
     if (postsArr) {
         let posts = []
         for (let p of postsArr) {
-            if (p.username != loggedInUser && loggedInUser.followers.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
+            if (p.username != loggedInUser && loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
                 posts.push(p)
             }
         }
