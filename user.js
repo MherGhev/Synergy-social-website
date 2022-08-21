@@ -6,7 +6,7 @@ class User {
         this.birthday = birthday;
         this.password = password;
         this.gender = gender;
-        this.profileImage = "../pictures/profile.png"
+        this.profileImage = "./pictures/profile.png"
         this.followers = [];
         this.followings = [];
         this.posts = [];
