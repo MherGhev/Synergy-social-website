@@ -40,8 +40,8 @@ searchBtn.addEventListener("click",()=>{
             occurence.addEventListener("click",e=>{
                 for(let user of JSON.parse(localStorage.getItem("users"))){
                     if(e.target.id==user.username){
-                        f(loggedInUser,user);
-                        window.location.href="./chat.html";  //need to fix this
+                        localStorage.setItem("chatWithUser", JSON.stringify(user));
+                        window.location.href="../chat/chat.html";  //need to fix this
                     }
                 }
             })

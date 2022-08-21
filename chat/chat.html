@@ -13,14 +13,10 @@
     <header>
         <span class="logo">haram</span>
         <div class="header-right-side">
-            <div class="input">
-                <input id="inputId" type="text" placeholder="Search in haram">
-                <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
-            </div>
             <div class="header-end">
                 <img src="" alt="profile-pic" id="profile-pic">
                 <span id="header-username"></span>
-                <button class="logout-btn">Log out</button>
+                <button class="logout-btn" onclick="window.location.assign('../loginPage/index.html')">Log out</button>
             </div>
 
         </div>
@@ -37,16 +33,16 @@
             <div id="send-div">
                 <form id="form" style="display: inline">
                     <input id="input" type="text" placeholder="Send message" autocomplete="off">
-                    <button id="send-button" type="button" onclick="send(user1,user2)"><img src="send-message.png"></button>
+                    <button id="send-button" type="button"><img src="send-message.png"></button>
                 </form>
-                <button id="refresh" type="button" onclick="refresh(user1,user2)"><img src="refresh-button.png"></button>
+                <button id="refresh" type="button"><img src="refresh-button.png"></button>
                 <button id="theme" type="button" onclick="changeTheme()">change theme</button>
             </div>
         </div>
     </div>
     
-    <script src="MyChat.js"></script>
-    <script src="../Synergy Academy/Final Project JS/Synergy-social-website/classes/user.js"></script>
-    <script src="../Synergy Academy/Final Project JS/Synergy-social-website/classes/message.js"></script>
+    <script src="../classes/user.js"></script>
+    <script src="../classes/message.js"></script>
+    <script src="./MyChat.js"></script>
 </body>
 </html>

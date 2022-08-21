@@ -1,27 +1,29 @@
-class MyChat{
+class MyChat {
     static id = 0;
     constructor(user1, user2) {
         this.user1 = user1;
         this.user2 = user2;
         this.messages = [];
-        MyChat.id ++;
-        user1.chats[user2.username] = "" +  MyChat.id;
+        MyChat.id++;
+        user1.chats[user2.username] = "" + MyChat.id;
         user2.chats[user1.username] = "" + MyChat.id;
         localStorage.setItem("" + MyChat.id, JSON.stringify(this.messages));
     }
 }
 
-function getChat(user1, user2){
-    let chatId;
-    if(user1.chats[user2.username] === undefined){
-        new MyChat(user1,user2);
+function getChat(user1, user2) {
+    console.log("aa");
+    console.log(user1.chats[user2.username]);
+    if (user1.chats[user2.username] === undefined) {
+        console.log("new chat is created");
+        new MyChat(user1, user2);
     }
     chatId = user1.chats[user2.username];
     return localStorage.getItem(chatId);
 }
 
-function sendMessage(user1, user2, content){
-    let message = new Message(user1, user2, content);
+function sendMessage(user1, user2, content) {
+    let message = new Message(content, user1, user2);
     let a = localStorage.getItem(user1.chats[user2.username]);
     let arr = JSON.parse(a);
     arr.push(message);
@@ -33,12 +35,13 @@ function f(user1, user2) {
     let messageList = JSON.parse(getChat(user1, user2));
     for (let i = 0; i < messageList.length; i++) {
         let myDiv = document.createElement('div');
-        if (messageList[i].from._username === user1.username) {
+        if (messageList[i].from.username === user1.username) {
             myDiv.className = 'from-me'
         } else {
             myDiv.className = 'to-me'
         }
-        myDiv.innerHTML = messageList[i].content;
+
+        myDiv.innerText = messageList[i].content;
         document.getElementById("messages").appendChild(myDiv);
     }
     scrollBottom();
@@ -56,8 +59,8 @@ function f(user1, user2) {
 }
 
 function send(user1, user2) {
-    let inputValue = document.querySelector("input").value;
-    let input = document.getElementById('input');
+    let input = document.getElementById("input");
+    let inputValue = input.value;
     input.value = ""
     if (inputValue !== "") {
         sendMessage(user1, user2, inputValue);
@@ -89,21 +92,40 @@ function changeTheme() {
     }
 }
 
-let header_username=document.getElementById("header-username")
-let profile_img=document.getElementById("profile-pic")
-const logo=document.querySelector(".logo")
 
-header_username.innerHTML=`${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
-profile_img.src=`${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
+let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+let chatWithUser = JSON.parse(localStorage.getItem("chatWithUser"));
+console.log(loggedInUser);
+console.log(chatWithUser);
 
-let logout=document.querySelector(".logout-btn")
 
-logout.addEventListener("click",()=>{
-    window.location.href="./loginPage/index.html"
+let sendButton = document.getElementById("send-button");
+let refreshButton = document.getElementById("refresh");
+
+sendButton.addEventListener("click", () => {
+    send(loggedInUser, chatWithUser);
 })
-logo.addEventListener("click",()=>{
-    window.location.href="./timeline.html"
+
+refreshButton.addEventListener("click", () => {
+    refresh(loggedInUser, chatWithUser);
 })
-profile_img.addEventListener("click",()=>{
-    window.location.href="./profile-page/index.html"
+
+f(loggedInUser, chatWithUser);
+
+
+let header_username = document.getElementById("header-username")
+let profile_img = document.getElementById("profile-pic")
+const logo = document.querySelector(".logo")
+
+header_username.innerHTML = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
+profile_img.src = `${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
+
+
+
+
+logo.addEventListener("click", () => {
+    window.location.href = "../timeline/timeline.html"
+})
+profile_img.addEventListener("click", () => {
+    window.location.href = "./profile-page/index.html"
 })

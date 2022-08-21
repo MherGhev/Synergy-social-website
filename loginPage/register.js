@@ -82,7 +82,6 @@ function logIn() {
         let user = users[i];
         if (username === user.username && password === user.password) {
             isLoggedIn = true;
-            alert("Logged in successfully");
             localStorage.setItem("loggedInUser", JSON.stringify(user));
             window.location.assign("../timeline/timeline.html");
         } 
