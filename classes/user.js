@@ -6,7 +6,7 @@ class User {
         this.birthday = birthday;
         this.password = password;
         this.gender = gender;
-        this.profileImage = "./pictures/profile.png"
+        this.profileImage = "../pictures/profile.png";
         this.followers = [];
         this.followings = [];
         this.posts = [];
@@ -18,37 +18,35 @@ class User {
  
     static userArray = [];
 
-    addFollower = function (newFollower) {
-        this.followers.push(newFollower);
-    }
+}
 
-    follow = function (newFollowing) {
-        this.followings.push(newFollowing);
-        newFollowing.addFollower(this);
+if (localStorage.getItem('users')) {
+    for (let usr of JSON.parse(localStorage.getItem("users"))) {
+        User.userArray.push(usr);
     }
+}
 
-    unFollow = function (otherUser) {
-        let indexOfFollowing = this.followings.indexOf(otherUser);
-        let indexOfThisInOtherUserFollowers = otherUser.followers.indexOf(this);
+function addFollower(user,newFollower) {
+    user.followers.push(newFollower.username);
+}
 
-        if (indexOfFollowing >= 0) {
-            this.followings.splice(indexOfFollowing, 1);
-            otherUser.followers.splice(indexOfThisInOtherUserFollowers, 1);
-        } else {
-            console.log("No such user.")
-        }
+function follow(user,newFollowing) {
+    user.followings.push(newFollowing.username);
+    addFollower(newFollowing,user);
+}
+
+function  unFollow(user,otherUser) {
+    let indexOfFollowing = user.followings.indexOf(otherUser.username);
+    let indexOfThisInOtherUserFollowers = otherUser.followers.indexOf(user.username);
+
+    if (indexOfFollowing >= 0) {
+        user.followings.splice(indexOfFollowing, 1);
+        otherUser.followers.splice(indexOfThisInOtherUserFollowers, 1);
+    } else {
+         console.log("No such user.")
     }
+}
 
-    addPost = function (newPost) {
-        this.posts.push(newPost);
-    }
-
-    removePost = function (delPost) {
-        let indexOfPost = this.posts.indexOf(delPost);
-        if (indexOfPost >= 0) {
-            this.posts.splice(indexOfPost, 1);
-        } else {
-            console.log("No such post.");
-        }
-    }
+function addPost(user,newPost) {
+    user.posts.push(newPost);
 }
