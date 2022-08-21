@@ -1,4 +1,4 @@
-let users = Object.keys(localStorage);
+let users = JSON.parse(localStorage.getItem("users"));
 
 function register() {
     event.preventDefault();
@@ -28,7 +28,8 @@ function register() {
         alert("Please confirm that you are agree with terms and conditions")
     } else {
         let user = new User(fName, lName, username, birthday, password);
-        localStorage.setItem(username, JSON.stringify(user));
+        localStorage.setItem("users", JSON.stringify(User.userArray));
+        users = JSON.parse(localStorage.getItem("users"));
     }
 }
 
@@ -39,12 +40,15 @@ function termsAndConditions(checkbox) {
 
 function isValidUsername(username) {
     if (username == "") return false;
-    for (let i = 0; i < users.length; i++) {
-        let user = JSON.parse(localStorage.getItem(users[i]));
-        if (user.username === username) {
-            return false;
+    if (users) {
+        for (let i = 0; i < users.length; i++) {
+            let user = JSON.parse(localStorage.getItem("users"))[i];
+            if (user.username === username) {
+                return false;
+            }
         }
     }
+
     return true;
 }
 
@@ -74,16 +78,15 @@ function logIn() {
     let password = document.getElementById("loginPassword").value;
     let isLoggedIn = false;
     for (let i = 0; i < users.length; i++) {
-        let user = JSON.parse(localStorage.getItem(users[i]));
-        if (username == user.username && password == user.password) {
-            alert("you are logged in");
+        let user = users[i];
+        if (username === user.username && password === user.password) {
             isLoggedIn = true;
-        }
+            alert("Logged in successfully");
+            localStorage.setItem("loggedInUser", JSON.stringify(user));
+            window.location.assign("./test.html") 
+        } 
     }
     if (!isLoggedIn) {
         alert("your log in or password is incorrect");
     }
 }
-
-
-

@@ -5,5 +5,9 @@ class Message {
         this.to = to;
         this.date = new Date();
     }
+<<<<<<< HEAD:message.js
 }
 
+=======
+}
+>>>>>>> main:classes/message.js

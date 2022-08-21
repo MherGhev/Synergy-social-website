@@ -1,53 +1,21 @@
-
 class User {
     constructor(fName, lName, username, birthday, password, gender) {
-        this._fName = fName;
-        this._lName = lName;
-        this.username = username;
-        this._birthday = birthday;
-        this._password = password;
-        this._gender = gender;
+        this.fName = fName;
+        this.lName = lName;
+        this.username = username
+        this.birthday = birthday;
+        this.password = password;
+        this.gender = gender;
+        this.profileImage = "./pictures/profile.png"
         this.followers = [];
         this.followings = [];
         this.posts = [];
         this.chats = [];
-    }
-    get fName() {
-        return this._fName;
-    }
-    set fName(newFName) {
-        this._fName = newFName;
-    }
-    get lName() {
-        return this._lName;
-    }
-    set lName(newLName) {
-        this._lName = newLName;
-    }
-    get birthday() {
-        return this._birthday;
-    }
-    set birthday(newBirthday) {
-        if (newBirthday instanceof Date) {
-            this._birthday = newBirthday;
-            return true;
-        } else {
-            return false;
-        }
-    }
-    get password() {
-        return this._password;
-    }
-    set password(newPassword) {
-        this._password = newPassword;
-    }
-    get gender() {
-        return this._gender;
-    }
-    set gender(newGender) {
-        this._gender = newGender;
+        User.userArray.push(this);
+        localStorage.setItem("users", JSON.stringify(User.userArray));
     }
 
+    static userArray = [];
 
     addFollower = function (newFollower) {
         this.followers.push(newFollower);
@@ -82,6 +50,4 @@ class User {
             console.log("No such post.");
         }
     }
-
 }
-
