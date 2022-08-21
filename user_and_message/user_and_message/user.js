@@ -6,10 +6,7 @@ class User {
         this.birthday = birthday;
         this.password = password;
         this.gender = gender;
-<<<<<<< HEAD:user_and_message/user.js
-=======
         this.profileImage = "./pictures/profile.png"
->>>>>>> post-js:user.js
         this.followers = [];
         this.followings = [];
         this.posts = [];
