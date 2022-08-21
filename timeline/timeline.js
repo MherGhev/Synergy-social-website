@@ -173,6 +173,6 @@ logout.addEventListener("click",()=>{
     window.location.href="./loginPage/index.html"
 })
 
-profile_img.addEventListener(()=>{
+profile_img.addEventListener("click",()=>{
     window.location.href="./profile-page/index.html"
 })
