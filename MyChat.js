@@ -104,3 +104,6 @@ logout.addEventListener("click",()=>{
 logo.addEventListener("click",()=>{
     window.location.href="./timeline.html"
 })
+profile_img.addEventListener(()=>{
+    window.location.href="./profile-page/index.html"
+})
