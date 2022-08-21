@@ -99,8 +99,8 @@ const displaySearchedUsers=(usersArr)=>{
                         <img src="${user.profileImage}" alt="user-img">
                         <span>${user.fName} ${user.lName}</span>
                         <div class="btns">
-                            <button>Message</button>
-                            <button>Follow</button>
+                            <button class="message" id="${user.username}">Message</button>
+                            <button class="follow">Follow</button>
                         </div>
                     </div>
             `;
@@ -111,23 +111,51 @@ const displaySearchedUsers=(usersArr)=>{
 }
 
 document.querySelectorAll(".like").forEach(occurence=>{
-    let liked=false;
     occurence.addEventListener("click",e=>{
         for(let post of postsArr){
             if(post.id==e.target.id){
-                if(liked){
+                if(post.usersLiked.indexOf(loggedInUser)!=-1){
                     liked=false;
                     post.likes--;
+                    post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser),1)
                     console.log(post.likes)
                     occurence.children[0].style.color=" #c8c6e2";
                     occurence.children[1].innerHTML=`${post.likes}`
                 } else {
                     liked=true;
                     post.likes++;
+                    post.usersLiked.push(loggedInUser)
                     console.log(post.likes)
                     occurence.children[0].style.color="#62087c";
                     occurence.children[1].innerHTML=`${post.likes}`
                 }
+            }
+        }
+    })
+})
+
+document.querySelectorAll(".follow").forEach(occurence=>{
+    occurence.addEventListener("click",e=>{
+        for(let user of JSON.parse(localStorage.getItem("users"))){
+            if(e.target.id==user.username){
+                if(loggedInUser.followers.indexOf(user)=-1){
+                    console.log("followed")
+                    loggedInUser.addFollower(user)
+                } else {
+                    console.log("unfollowed")
+                    loggedInUser.unFollow(user)
+                }
+            }
+        }
+    })
+})
+
+document.querySelectorAll(".message").forEach(occurence=>{
+    occurence.addEventListener("click",e=>{
+        for(let user of JSON.parse(localStorage.getItem("users"))){
+            if(e.target.id==user.username){
+                f(loggedInUser,user);
+                window.location.href="./chat.html";  //need to fix this
             }
         }
     })
