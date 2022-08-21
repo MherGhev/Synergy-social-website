@@ -48,7 +48,29 @@ function togglePopup() {
     }
 }
 
+function addPostProfile(){
+    let x = JSON.parse(localStorage.getItem("posts"));
+    let length = x.length;
+    let postImg = document.createElement('img');
+    postImg.src = x[length - 1].content.picture;
+    let postText = x[length - 1].content.text;
+    let myDiv = document.createElement('div');
+    if (postImg.src === "") {
+        myDiv.append(postText);
+    }
+    else if (postText.value === "") {
+        myDiv.append(postImg);
+    }
+    else {
+
+        myDiv.append(postText);
+        myDiv.append(postImg);
+    }
+    document.getElementById("main-posts").append(myDiv);
+}
+
 function post() {
+
     let postImg = document.getElementById("post-image");
     let postText = document.getElementById("post-description");
     if (postImg.src === "" && postText.value === "") {
@@ -58,6 +80,10 @@ function post() {
         haykaz.addPost(new Post(haykaz.username, postImg.src, postText.value));
         localStorage.setItem("posts", JSON.stringify(Post.postArray));
         togglePopup();
-        console.log(JSON.parse(localStorage.getItem("posts")));
+        // console.log(JSON.parse(localStorage.getItem("posts")));
+        addPostProfile();
+        postImg.src = "";
+        postText.value = "";
+
     }
 }
