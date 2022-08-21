@@ -1,4 +1,4 @@
-class Message{
+class Message {
     constructor(content, from, to) {
         this.content = content;
         this.from = from;

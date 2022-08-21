@@ -6,7 +6,7 @@ class User {
         this.birthday = birthday;
         this.password = password;
         this.gender = gender;
-        this.profileImage = "./pictures/profile.png"
+        this.profileImage = "../pictures/profile.png";
         this.followers = [];
         this.followings = [];
         this.posts = [];
@@ -19,11 +19,11 @@ class User {
     static userArray = [];
 
     addFollower = function (newFollower) {
-        this.followers.push(newFollower);
+        this.followers.push(newFollower.username);
     }
 
     follow = function (newFollowing) {
-        this.followings.push(newFollowing);
+        this.followings.push(newFollowing.username);
         newFollowing.addFollower(this);
     }
 
