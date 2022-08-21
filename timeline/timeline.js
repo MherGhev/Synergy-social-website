@@ -33,16 +33,15 @@ input.addEventListener("keypress",(e)=>{
 
 
 
-const displayPosts = (postsArr) => {
-    if (postsArr) {
-        let posts = []
-        for (let p of postsArr) {
-            if (p.username != loggedInUser && loggedInUser.followers.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
-                posts.push(p)
-            }
+const displayPosts=(postsArr)=>{
+    let posts=[]
+    for(let p of postsArr){
+        if(p.username!=loggedInUser && loggedInUser.followers.indexOf(JSON.parse(localStorage.getItem(p.username)))!=-1){
+            posts.push(p)
         }
-        const htmlString = posts.map((post) => {
-            return `
+    }
+    const htmlString=posts.map((post)=>{
+        return `
         <div class="post-card">
             <div class="content-header">
                 <div class="profile">
@@ -63,85 +62,47 @@ const displayPosts = (postsArr) => {
                 </div>
             </div>
         </div>`;
-        }).join("");
-        timeline.innerHTML = htmlString;
-    }
-    
+    }).join("");
+    timeline.innerHTML=htmlString;
 }
 
 
 searchedUsers.style.display="none"
 
 
-if (localStorage.getItem("posts")) {
-    let postsArr = JSON.parse(localStorage.getItem("posts"))
-    postsArr.sort((a, b) => a.date - b.date)
-    displayPosts(postsArr)
-}
+let postsArr=JSON.parse(localStorage.getItem("posts"))
+postsArr.sort((a,b)=> a.date-b.date)
+displayPosts(postsArr)
 
 
-// const displaySearchedUsers=(usersArr)=>{
-//     let filteredUsers=[]
-//     let users=[]
-//     for(let u of usersArr){
-//         if(u!=loggedInUser){
-//             users.push(u)
-//         }
-//     }
-//     for(let user of users){
-//         if((user.fName+" "+user.lName).toLowerCase().includes(input.value.toLowerCase())){
-//             filteredUsers.push(user);
-//         }
-//     }
-
-//     if(filteredUsers.length==0){
-//         const htmlStringNo= `<div class="no-user">No users found.</div>`;
-//         usersCards.innerHTML=htmlStringNo;
-//     } else{
-//         const htmlString=filteredUsers.map((user)=>{
-//             return `
-//                     <div class="user">
-//                         <img src="${user.profileImage}" alt="user-img">
-//                         <span>${user.fName} ${user.lName}</span>
-//                         <div class="btns">
-//                             <button class="message" id="${user.username}">Message</button>
-//                             <button class="follow">Follow</button>
-//                         </div>
-//                     </div>
-//             `;
-//         }).join("");
-//         usersCards.innerHTML=htmlString;
-//     }
-// }
-
-const displaySearchedUsers = (usersArr) => {
-    let filteredUsers = []
-    let users = []
-    for (let u of usersArr) {
-        if (u.username != loggedInUser.username) {
+const displaySearchedUsers=(usersArr)=>{
+    let filteredUsers=[]
+    let users=[]
+    for(let u of usersArr){
+        if(u!=loggedInUser){
             users.push(u)
         }
     }
-    for (let user of users) {
-        if ((user.fName + " " + user.lName).toLowerCase().includes(input.value.toLowerCase())) {
+    for(let user of users){
+        if((user.fName+" "+user.lName).toLowerCase().includes(input.value.toLowerCase())){
             filteredUsers.push(user);
         }
     }
 
-    if (filteredUsers.length == 0) {
-        const htmlStringNo = `<div class="no-user">No users found.</div>`;
-        usersCards.innerHTML = htmlStringNo;
-    } else {
-        let follows = []
-        for (let user of filteredUsers) {
-            if (loggedInUser.followers.indexOf(user) == -1) {
+    if(filteredUsers.length==0){
+        const htmlStringNo= `<div class="no-user">No users found.</div>`;
+        usersCards.innerHTML=htmlStringNo;
+    } else{
+        let follows=[]
+        for(let user of filteredUsers){
+            if(loggedInUser.followers.indexOf(user)==-1){
                 follows.push("Follow")
             } else {
                 follows.push("Unfollow")
             }
         }
-        let i = 0;
-        const htmlString = filteredUsers.map((user) => {
+        let i=0;
+        const htmlString=filteredUsers.map((user)=>{
             return `
                     <div class="user">
                         <img src="${user.profileImage}" alt="user-img">
@@ -153,7 +114,7 @@ const displaySearchedUsers = (usersArr) => {
                     </div>
             `;
         }).join("");
-        usersCards.innerHTML = htmlString;
+        usersCards.innerHTML=htmlString;
     }
 
 }
@@ -182,33 +143,17 @@ document.querySelectorAll(".like").forEach(occurence=>{
     })
 })
 
-// document.querySelectorAll(".follow").forEach(occurence=>{
-//     occurence.addEventListener("click",e=>{
-//         for(let user of JSON.parse(localStorage.getItem("users"))){
-//             if(e.target.id==user.username){
-//                 if(loggedInUser.followers.indexOf(user)===-1){
-//                     console.log("followed")
-//                     loggedInUser.addFollower(user)
-//                 } else {
-//                     console.log("unfollowed")
-//                     loggedInUser.unFollow(user)
-//                 }
-//             }
-//         }
-//     })
-// })
-
-document.querySelectorAll(".follow").forEach(occurence => {
-    occurence.addEventListener("click", e => {
-        for (let user of JSON.parse(localStorage.getItem("users"))) {
-            if (e.target.id == user.username) {
-                if (loggedInUser.followers.indexOf(user) == -1) {
+document.querySelectorAll(".follow").forEach(occurence=>{
+    occurence.addEventListener("click",e=>{
+        for(let user of JSON.parse(localStorage.getItem("users"))){
+            if(e.target.id==user.username){
+                if(loggedInUser.followers.indexOf(user)==-1){
                     console.log("followed")
-                    occurence.innerHTML = "Unfollow"
+                    occurence.innerHTML="Unfollow"
                     loggedInUser.addFollower(user)
                 } else {
                     console.log("unfollowed")
-                    occurence.innerHTML = "Follow"
+                    occurence.innerHTML="Follow"
                     loggedInUser.unFollow(user)
                 }
             }
@@ -235,6 +180,9 @@ profile_img.src=`${JSON.parse(localStorage.getItem("loggedInUser")).profileImage
 
 let logout=document.querySelector(".logout-btn")
 
+logout.addEventListener("click",()=>{
+    window.location.href="./loginPage/index.html"
+})
 
 profile_img.addEventListener("click",()=>{
     window.location.href="./profile-page/index.html"
