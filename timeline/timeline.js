@@ -93,6 +93,15 @@ const displaySearchedUsers=(usersArr)=>{
         const htmlStringNo= `<div class="no-user">No users found.</div>`;
         usersCards.innerHTML=htmlStringNo;
     } else{
+        let follows=[]
+        for(let user of filteredUsers){
+            if(loggedInUser.followers.indexOf(user)==-1){
+                follows.push("Follow")
+            } else {
+                follows.push("Unfollow")
+            }
+        }
+        let i=0;
         const htmlString=filteredUsers.map((user)=>{
             return `
                     <div class="user">
@@ -100,7 +109,7 @@ const displaySearchedUsers=(usersArr)=>{
                         <span>${user.fName} ${user.lName}</span>
                         <div class="btns">
                             <button class="message" id="${user.username}">Message</button>
-                            <button class="follow">Follow</button>
+                            <button class="follow">${follows[i++]}</button>
                         </div>
                     </div>
             `;
@@ -138,11 +147,13 @@ document.querySelectorAll(".follow").forEach(occurence=>{
     occurence.addEventListener("click",e=>{
         for(let user of JSON.parse(localStorage.getItem("users"))){
             if(e.target.id==user.username){
-                if(loggedInUser.followers.indexOf(user)=-1){
+                if(loggedInUser.followers.indexOf(user)==-1){
                     console.log("followed")
+                    occurence.innerHTML="Unfollow"
                     loggedInUser.addFollower(user)
                 } else {
                     console.log("unfollowed")
+                    occurence.innerHTML="Follow"
                     loggedInUser.unFollow(user)
                 }
             }
