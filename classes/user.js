@@ -12,6 +12,8 @@ class User {
         this.posts = [];
         this.chats = [];
         User.userArray.push(this);
+        localStorage.setItem("users", JSON.stringify(User.userArray));
+        console.log(User.userArray)
     }
  
     static userArray = [];
