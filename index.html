@@ -51,7 +51,13 @@
             <i style="color: #a3a6aa" class="fa-solid fa-user-group"></i>
             <span>Followers</span>
           </div>
+
       </div>
+
+        <div class="change-picture">
+         <button id="changePictue" style="width:200px; height:50px;" onclick="document.getElementById('getFile').click()">Choose Profile Picture</button>
+         <input type='file' id="getFile" style="display:none" oninput="changePic()">
+    </div>
       <div  class="td" id="m-col">
         <div style="border-radius: 9px"class="m-mrg" id="composer">
           <div id="c-c-main">
@@ -59,8 +65,9 @@
               <div class="td" id="p-c-i"><img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="Profile pic"></div>
               <div class="td" id="c-inp">
 <!--                popup-->
-<!--                <button class="add-post" onclick="fillPost()">Show posts</button>-->
-                <button class="add-post" onclick="togglePopup()">Add Post</button>
+                <div class="button-add">
+                 <button class="add-post" onclick="togglePopup()">Add Post</button>
+                </div>
                 <div id="popup-wrapper" style="display: none">
                   <div id="popup">
                     <div id="popup-header">
@@ -92,5 +99,6 @@
   <script src="post.js"></script>
   <script src="fillPosts.js"></script>
   <script src="addFriendsProfile.js"></script>
+<script src="profilePic.js"></script>
 </body>
 </html>
