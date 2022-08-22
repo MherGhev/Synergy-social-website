@@ -1,0 +1,60 @@
+#popup-wrapper{
+    position:absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+#popup{
+    display: flex;
+    flex-direction: column;
+    
+    width: 60%;
+    background-color: white;
+    border: 10px solid #62087c;
+    min-height: 40%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+#popup-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#popup-x{
+    cursor: pointer;
+}
+
+#post-image{
+    max-height: 400px;
+    max-width: 100%;
+    align-self: center;
+}
+
+#post-button{
+    align-self:flex-end;
+    color: white;
+    background-color: #62087c;
+    height: 40px;
+    width: 60px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+#post-description{
+    resize: none;
+    height: 100px;
+}
+
+
+#post-image-input{
+    color: transparent;
+}

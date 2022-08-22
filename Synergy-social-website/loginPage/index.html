@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/4cc9c1a995.js" crossorigin="anonymous"></script>
+    <!-- ===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Haram</title>
+    <!-- ===== CSS ===== -->
+    <link rel="stylesheet" href="style.css">
+
+    <!--<title>Login & Registration Form</title>-->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="forms">
+            <div class="form login">
+                <span class="title">Login</span>
+
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" id="loginUsername" placeholder="Enter your username" required>
+                        <i class="fa-solid fa-user-secret"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="password" id="loginPassword" placeholder="Enter your password"
+                            required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="logCheck">
+                            <label for="logCheck" class="text">Remember me</label>
+                        </div>
+
+                        <a href="#" class="text">Forgot password?</a>
+                    </div>
+
+                    <div class="input-field button">
+                        <input type="button" onclick="logIn()" value="Login">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Not a member?
+                        <a href="#" class="text signup-link">Signup Now</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="form signup">
+                <span class="title">Registration</span>
+
+                <form id="registrationForm" name="registrationForm">
+                    <div class="input-field">
+                        <input type="text" id="registerFName" placeholder="First Name" required>
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="registerLName" placeholder="Last Name" required>
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="registrationUsername" placeholder="Username" required>
+                        <i class="fa-solid fa-user-ninja"></i>
+                    </div>
+                    <div class="input-field">
+                        <input style="color: #999" type="date" id="registrationBirthday" placeholder="Birthday"
+                            required>
+                        <i class="fa-solid fa-cake-candles"></i>
+                    </div>
+
+                    <div class="input-field">
+                        <input type="password" id="registrationPassword" class="password" minlength="8" maxlength="20"
+                            placeholder="Create a password" required>
+                        <i class="uil uil-lock icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" id="registrationConfirmPassword" class="password" minlength="8"
+                            maxlength="20" placeholder="Confirm a password" required>
+                        <i class="uil uil-lock icon"></i>
+                        <i class="uil uil-eye-slash showHidePw"></i>
+                    </div>
+
+                    <div class="checkbox-text">
+                        <div class="checkbox-content">
+                            <input type="checkbox" id="registrationTermsCheckbox">
+                            <label for="registrationTermsCheckbox" class="text">I accepted all terms and
+                                conditions</label>
+                        </div>
+                    </div>
+
+                    <div class="input-field button" id="registerSubmitButton">
+                        <input type="submit" onclick="register()" value="Sign up">
+                    </div>
+                </form>
+
+                <div class="login-signup">
+                    <span class="text">Already a member?
+                        <a href="#" class="text login-link">Login Now</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../classes/user.js"></script>
+    <script src="signIn.js"></script>
+    <script src="register.js"></script>
+    <script src="../post/post.js"></script>
+</body>
+
+</html>

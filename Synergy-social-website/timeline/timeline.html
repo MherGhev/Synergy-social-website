@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleTimeline.css">
+    <script src="https://kit.fontawesome.com/28caf18a35.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <span class="logo">haram</span>
+            <div class="header-right-side">
+                <div class="input">
+                    <input id="inputId" type="text" placeholder="Search in haram">
+                    <i class="fa-solid fa-magnifying-glass" id="search-btn"></i>
+                </div>
+                <div class="header-end">
+                    <div onclick="window.location.assign('../profilePage/index.html')">
+                        <img src="" alt="profile-pic" id="profile-pic">
+                        <span id="header-username"></span>
+                    </div>
+                    <button class="logout-btn" onclick="window.location.assign('../loginPage/index.html')">Log
+                        out</button>
+                </div>
+            </div>
+        </header>
+        <div class="content-timeline">
+
+        </div>
+        <div class="searched-users">
+            <div class="users-card">
+                <h2>People</h2>
+                <div class="users-cards">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="timeline.js"></script>
+    <script src="../chat/MyChat.js"></script>
+    <script src="../classes/user.js"></script>
+    <script src="../post/post.js"></script>
+</body>
+
+</html>

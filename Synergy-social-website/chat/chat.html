@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/28caf18a35.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="chat-style.css">
+</head>
+<body>
+    <header>
+        <span class="logo">haram</span>
+        <div class="header-right-side">
+            <div class="header-end">
+                <img src="" alt="profile-pic" id="profile-pic">
+                <span id="header-username"></span>
+                <button class="logout-btn" onclick="window.location.assign('../loginPage/index.html')">Log out</button>
+            </div>
+
+        </div>
+    </header>
+    <div class="content-chat">
+        
+        <div id="chat">
+            <div id="chat-header">
+                <h3 id="username"></h3>
+            </div>
+            <div id="messages">
+    
+            </div>
+            <div id="send-div">
+                <form id="form" style="display: inline">
+                    <input id="input" type="text" placeholder="Send message" autocomplete="off">
+                    <button id="send-button" type="button"><img src="send-message.png"></button>
+                </form>
+                <button id="refresh" type="button"><img src="refresh-button.png"></button>
+                <button id="theme" type="button" onclick="changeTheme()">change theme</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../classes/user.js"></script>
+    <script src="../classes/message.js"></script>
+    <script src="./MyChat.js"></script>
+</body>
+</html>
