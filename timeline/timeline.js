@@ -16,13 +16,12 @@ searchBtn.addEventListener("click", () => {
         }
         displaySearchedUsers(JSON.parse(localStorage.getItem("users")))
 
-
+        let usersArr = JSON.parse(localStorage.getItem("users"))
         document.querySelectorAll(".follow").forEach(occurence => {
             occurence.addEventListener("click", e => {
-                for (let user of JSON.parse(localStorage.getItem("users"))) {
+                for (let user of usersArr) {
                     if (e.target.id == user.username) {
                         if (loggedInUser.followings.indexOf(user.username) == -1) {
-                            console.log(loggedInUser)
                             console.log("followed")
                             occurence.innerHTML = "Unfollow"
                             follow(loggedInUser, user)
@@ -33,6 +32,7 @@ searchBtn.addEventListener("click", () => {
                         }
                     }
                 }
+                localStorage.setItem("users", JSON.stringify(usersArr))
             })
         })
 
@@ -41,7 +41,7 @@ searchBtn.addEventListener("click", () => {
                 for (let user of JSON.parse(localStorage.getItem("users"))) {
                     if (e.target.id == user.username) {
                         localStorage.setItem("chatWithUser", JSON.stringify(user));
-                        window.location.href = "../chat/chat.html";  //need to fix this
+                        window.location.href = "../chat/chat.html";
                     }
                 }
             })
@@ -68,18 +68,18 @@ const displayPosts = (postsArr) => {
     if (postsArr) {
         let posts = []
         for (let p of postsArr) {
-            // if (p.username != loggedInUser && loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
+            // if (loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
             posts.push(p)
             // }
         }
         console.log(posts)
-        const htmlString = posts.map((post, index) => {
+        const htmlString = posts.map((post) => {
             return `
         <div class="post-card">
             <div class="content-header">
                 <div class="profile">
                     <img src="" alt="pic">
-                    <span class="post-user">${posts[index].username} ${posts[index].username}</span>
+                    <span class="post-user">${post.username}</span>
                 </div>
             </div>
             <div class="post-content">
@@ -105,13 +105,8 @@ const displayPosts = (postsArr) => {
 searchedUsers.style.display = "none"
 
 
-
 let postsArr = JSON.parse(localStorage.getItem("posts"))
-    // console.log(postsArr)
-    // postsArr.sort((a, b) => a.date - b.date)
 displayPosts(postsArr)
-
-
 
 
 const displaySearchedUsers = (usersArr) => {
@@ -134,7 +129,7 @@ const displaySearchedUsers = (usersArr) => {
     } else {
         let follows = []
         for (let user of filteredUsers) {
-            if (loggedInUser.followers.indexOf(user) == -1) {
+            if (loggedInUser.followings.indexOf(user.username) == -1) {
                 follows.push("Follow")
             } else {
                 follows.push("Unfollow")
@@ -165,22 +160,22 @@ document.querySelectorAll(".like").forEach(occurence => {
         for (let post of postsArr) {
 
             if (post.id == e.target.id) {
-                if (post.usersLiked.indexOf(loggedInUser) != - 1) {
-0
+                if (post.usersLiked.indexOf(loggedInUser.username) != - 1) {
                     post.likes--;
-                    post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser), 1)
+                    post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser.username), 1)
                     occurence.children[0].style.color = " #c8c6e2";
-                    occurence.children[1].innerHTML = `${post.likes}`
+                    occurence.children[1].innerHTML = `${post.usersLiked.length}`
                 } else {
 
                     post.likes++;
-                    post.usersLiked.push(loggedInUser)
+                    post.usersLiked.push(loggedInUser.username)
                     console.log(post.usersLiked);
                     occurence.children[0].style.color = "#62087c";
-                    occurence.children[1].innerHTML = `${post.likes}`
+                    occurence.children[1].innerHTML = `${post.usersLiked.length}`
                 }
             }
         }
+        localStorage.setItem("posts", JSON.stringify(postsArr));
     })
 })
 
