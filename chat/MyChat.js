@@ -7,7 +7,6 @@ class MyChat {
         this.user2 = user2;
         this.messages = [];
         MyChat.id++;
-        debugger
         let myChats = { [user2.username]: "" + MyChat.id }
         let myChats2 = { [user1.username]: "" + MyChat.id }
         for (const user of users) {
@@ -30,7 +29,6 @@ class MyChat {
 
 function getChat(user1, user2) {
     console.log("aa");
-    debugger
     console.log(user1.chats[user2.username]);
     if (user1.chats[user2.username] === undefined) {
         console.log("new chat is created");

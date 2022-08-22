@@ -3,7 +3,7 @@ const timeline = document.querySelector(".content-timeline")
 const likeBtns = document.querySelectorAll(".like")
 let likeCount = document.querySelector(".count")
 const headerUsername = document.getElementById("user-name");
-headerUsername.innerText = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName };`
+headerUsername.innerText = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName }`
 const userName = document.getElementById("u-name");
 userName.innerText = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName };`
 
