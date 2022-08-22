@@ -1,18 +1,18 @@
-const searchBtn=document.getElementById("search-btn");
-const input=document.getElementById("inputId");
-const logo=document.querySelector(".logo")
-const timeline=document.querySelector(".content-timeline")
-const searchedUsers=document.querySelector(".searched-users")
-const usersCards=document.querySelector(".users-cards")
-const likeBtns=document.querySelectorAll(".like")
-let likeCount=document.querySelector(".count")
-let loggedInUser=JSON.parse(localStorage.getItem("loggedInUser"))
+const searchBtn = document.getElementById("search-btn");
+const input = document.getElementById("inputId");
+const logo = document.querySelector(".logo")
+const timeline = document.querySelector(".content-timeline")
+const searchedUsers = document.querySelector(".searched-users")
+const usersCards = document.querySelector(".users-cards")
+const likeBtns = document.querySelectorAll(".like")
+let likeCount = document.querySelector(".count")
+let loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"))
 
-searchBtn.addEventListener("click",()=>{
-    if(input.value){
-        if(timeline.style.display!="none"){
-            timeline.style.display="none"
-            searchedUsers.style.display="flex"
+searchBtn.addEventListener("click", () => {
+    if (input.value) {
+        if (timeline.style.display != "none") {
+            timeline.style.display = "none"
+            searchedUsers.style.display = "flex"
         }
         displaySearchedUsers(JSON.parse(localStorage.getItem("users")))
 
@@ -25,39 +25,38 @@ searchBtn.addEventListener("click",()=>{
                             console.log(loggedInUser)
                             console.log("followed")
                             occurence.innerHTML = "Unfollow"
-                            follow(loggedInUser,user)
+                            follow(loggedInUser, user)
                         } else {
                             console.log("unfollowed")
                             occurence.innerHTML = "Follow"
-                            unFollow(loggedInUser,user)
+                            unFollow(loggedInUser, user)
                         }
                     }
                 }
             })
         })
 
-        document.querySelectorAll(".message").forEach(occurence=>{
-            occurence.addEventListener("click",e=>{
-                for(let user of JSON.parse(localStorage.getItem("users"))){
-                    if(e.target.id==user.username){
+        document.querySelectorAll(".message").forEach(occurence => {
+            occurence.addEventListener("click", e => {
+                for (let user of JSON.parse(localStorage.getItem("users"))) {
+                    if (e.target.id == user.username) {
                         localStorage.setItem("chatWithUser", JSON.stringify(user));
-                        window.location.href="../chat/chat.html";  //need to fix this
+                        window.location.href = "../chat/chat.html";  //need to fix this
                     }
                 }
             })
         })
-
     }
 })
 
-logo.addEventListener("click",()=>{
-    input.value=""
-    searchedUsers.style.display="none"
-    timeline.style.display="flex"
+logo.addEventListener("click", () => {
+    input.value = ""
+    searchedUsers.style.display = "none"
+    timeline.style.display = "flex"
 })
 
-input.addEventListener("keypress",(e)=>{
-    if(e.keyCode==13){
+input.addEventListener("keypress", (e) => {
+    if (e.keyCode == 13) {
         e.preventDefault()
         searchBtn.click()
     }
@@ -69,17 +68,18 @@ const displayPosts = (postsArr) => {
     if (postsArr) {
         let posts = []
         for (let p of postsArr) {
-            if (p.username != loggedInUser && loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
-                posts.push(p)
-            }
+            // if (p.username != loggedInUser && loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
+            posts.push(p)
+            // }
         }
-        const htmlString = posts.map((post) => {
+        console.log(posts)
+        const htmlString = posts.map((post, index) => {
             return `
         <div class="post-card">
             <div class="content-header">
                 <div class="profile">
                     <img src="" alt="pic">
-                    <span class="post-user">${JSON.parse(localStorage.getItem(post.username)).fName} ${JSON.parse(localStorage.getItem(post.username)).lName}</span>
+                    <span class="post-user">${posts[index].username} ${posts[index].username}</span>
                 </div>
             </div>
             <div class="post-content">
@@ -98,16 +98,22 @@ const displayPosts = (postsArr) => {
         }).join("");
         timeline.innerHTML = htmlString;
     }
-    
+
 }
 
 
-searchedUsers.style.display="none"
+searchedUsers.style.display = "none"
+
+let post1 = new Post("a", "pictures/profile.png", "ahaha");
+let post2 = new Post("a", "pictures/profile.png", "ahaha");
+
+localStorage.setItem("posts", JSON.stringify(Post.postArray));
 
 
 if (localStorage.getItem("posts")) {
     let postsArr = JSON.parse(localStorage.getItem("posts"))
-    postsArr.sort((a, b) => a.date - b.date)
+    // console.log(postsArr)
+    // postsArr.sort((a, b) => a.date - b.date)
     displayPosts(postsArr)
 }
 
@@ -157,24 +163,33 @@ const displaySearchedUsers = (usersArr) => {
 
 }
 
-document.querySelectorAll(".like").forEach(occurence=>{
-    occurence.addEventListener("click",e=>{
-        for(let post of postsArr){
-            if(post.id==e.target.id){
-                if(post.usersLiked.indexOf(loggedInUser)!=-1){
-                    liked=false;
+document.querySelectorAll(".like").forEach(occurence => {
+    occurence.addEventListener("click", e => {
+        console.log("dd");
+        let liked;
+
+        for (let post of JSON.parse(localStorage.getItem("posts"))) {
+
+            console.log("aa");
+            if (post.id == e.target.id) {
+                console.log("bb");
+                if (post.usersLiked.indexOf(loggedInUser) != - 1) {
+                    console.log("cc");
+
+                    liked = false;
                     post.likes--;
-                    post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser),1)
-                    console.log(post.likes)
-                    occurence.children[0].style.color=" #c8c6e2";
-                    occurence.children[1].innerHTML=`${post.likes}`
+                    post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser), 1)
+                    occurence.children[0].style.color = " #c8c6e2";
+                    occurence.children[1].innerHTML = `${post.likes}`
                 } else {
-                    liked=true;
+                    console.log("tt");
+
+                    liked = true;
                     post.likes++;
                     post.usersLiked.push(loggedInUser)
-                    console.log(post.likes)
-                    occurence.children[0].style.color="#62087c";
-                    occurence.children[1].innerHTML=`${post.likes}`
+                    console.log(post.usersLiked);
+                    occurence.children[0].style.color = "#62087c";
+                    occurence.children[1].innerHTML = `${post.likes}`
                 }
             }
         }
@@ -182,15 +197,15 @@ document.querySelectorAll(".like").forEach(occurence=>{
 })
 
 
-let header_username=document.getElementById("header-username")
-let profile_img=document.getElementById("profile-pic")
+let header_username = document.getElementById("header-username")
+let profile_img = document.getElementById("profile-pic")
 
-header_username.innerHTML=`${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
-profile_img.src=`${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
+header_username.innerHTML = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
+profile_img.src = `${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
 
-let logout=document.querySelector(".logout-btn")
+let logout = document.querySelector(".logout-btn")
 
 
-profile_img.addEventListener("click",()=>{
-    window.location.href="./profile-page/index.html"
+profile_img.addEventListener("click", () => {
+    window.location.href = "./profile-page/index.html"
 })
