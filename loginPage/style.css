@@ -12,7 +12,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #EAE509;
+    background-color: #62087c;
 }
 
 .container{
@@ -75,7 +75,7 @@ body{
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: #EAE509;
+    background-color: #62087c;
     border-radius: 25px;
 }
 
@@ -100,7 +100,7 @@ body{
 }
 
 .input-field input:is(:focus, :valid){
-    border-bottom-color: #EAE509;
+    border-bottom-color: #62087c;
 }
 
 .input-field i{
@@ -113,7 +113,7 @@ body{
 }
 
 .input-field input:is(:focus, :valid) ~ i{
-    color: #EAE509;
+    color: #62087c;
 }
 
 .input-field i.icon{
@@ -139,7 +139,7 @@ body{
 
 .checkbox-content input{
     margin: 0 8px -2px 4px;
-    accent-color: #EAE509;
+    accent-color: #62087c;
 }
 
 .form .text{
@@ -148,7 +148,7 @@ body{
 }
 
 .form a.text{
-    color: #EAE509;
+    color: #62087c;
     text-decoration: none;
 }
 .form a:hover{

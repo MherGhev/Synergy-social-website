@@ -47,17 +47,3 @@ function togglePopup() {
         popup.style.display = "none"
     }
 }
-
-function post() {
-    let postImg = document.getElementById("post-image");
-    let postText = document.getElementById("post-description");
-    if (postImg.src === "" && postText.value === "") {
-        document.getElementById("popup").style = "border-color: red";
-    } else {
-        let haykaz = new User("Haykaz", "Martirosyan", new Date(1970, 12, 23), "haykazhaykaz", "male");
-        haykaz.addPost(new Post(haykaz.username, postImg.src, postText.value));
-        localStorage.setItem("posts", JSON.stringify(Post.postArray));
-        togglePopup();
-        console.log(JSON.parse(localStorage.getItem("posts")));
-    }
-}

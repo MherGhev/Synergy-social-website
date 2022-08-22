@@ -1,3 +1,5 @@
+let users = JSON.parse(localStorage.getItem("users"));
+
 class MyChat {
     static id = 0;
     constructor(user1, user2) {
@@ -5,14 +7,30 @@ class MyChat {
         this.user2 = user2;
         this.messages = [];
         MyChat.id++;
-        user1.chats[user2.username] = "" + MyChat.id;
-        user2.chats[user1.username] = "" + MyChat.id;
+        debugger
+        let myChats = { [user2.username]: "" + MyChat.id }
+        let myChats2 = { [user1.username]: "" + MyChat.id }
+        for (const user of users) {
+            if (user.username === user1.username) {
+                user.chats = myChats
+            }
+            if (user.username === user2.username) {
+                user.chats = myChats2;
+            }
+        }
+        localStorage.setItem('users', JSON.stringify(users))
+        loggedInUser.chats = myChats;
+        chatWithUser.chats = myChats2;
+        localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+        localStorage.setItem('chatWithUser', JSON.stringify(chatWithUser));
+
         localStorage.setItem("" + MyChat.id, JSON.stringify(this.messages));
     }
 }
 
 function getChat(user1, user2) {
     console.log("aa");
+    debugger
     console.log(user1.chats[user2.username]);
     if (user1.chats[user2.username] === undefined) {
         console.log("new chat is created");
@@ -117,8 +135,8 @@ let header_username = document.getElementById("header-username")
 let profile_img = document.getElementById("profile-pic")
 const logo = document.querySelector(".logo")
 
-header_username.innerHTML = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
-profile_img.src = `${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
+header_username.innerHTML = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName }`
+profile_img.src = `${ JSON.parse(localStorage.getItem("loggedInUser")).profileImage }`
 
 
 
@@ -129,3 +147,5 @@ logo.addEventListener("click", () => {
 profile_img.addEventListener("click", () => {
     window.location.href = "./profile-page/index.html"
 })
+
+``

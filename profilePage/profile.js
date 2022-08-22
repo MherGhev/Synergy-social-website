@@ -3,9 +3,9 @@ const timeline = document.querySelector(".content-timeline")
 const likeBtns = document.querySelectorAll(".like")
 let likeCount = document.querySelector(".count")
 const headerUsername = document.getElementById("user-name");
-headerUsername.innerText = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`;
+headerUsername.innerText = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName };`
 const userName = document.getElementById("u-name");
-userName.innerText = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`;
+userName.innerText = `${ JSON.parse(localStorage.getItem("loggedInUser")).fName } ${ JSON.parse(localStorage.getItem("loggedInUser")).lName };`
 
 
 //replace pictures with loggedinuser's picture
@@ -73,12 +73,6 @@ const displayPosts = (postsArr) => {
     const htmlString = posts.map((post) => {
         return `
         <div class="post-card">
-            <div class="content-header">
-                <div class="profile">
-                    <img src="" alt="pic">
-                    <span class="post-user">${JSON.parse(localStorage.getItem(post.username)).fName} ${JSON.parse(localStorage.getItem(post.username)).lName}</span>
-                </div>
-            </div>
             <div class="post-content">
                 <div class="text">
                     ${post.content.text}
@@ -96,13 +90,8 @@ const displayPosts = (postsArr) => {
     timeline.innerHTML = htmlString;
 }
 
+displayPosts(JSON.parse(localStorage.getItem("posts")))
 
-
-let postsArr = JSON.parse(localStorage.getItem("posts"))
-postsArr.sort((a, b) => a.date - b.date)
-displayPosts(postsArr)
-
-//Adds friends
 
 //Add friends
 for (let i = 0; i < loggedInUser.followers.length; ++i) {

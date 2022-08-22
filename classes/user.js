@@ -10,7 +10,7 @@ class User {
         this.followers = [];
         this.followings = [];
         this.posts = [];
-        this.chats = [];
+        this.chats = {};
         User.userArray.push(this);
         localStorage.setItem("users", JSON.stringify(User.userArray));
         console.log(User.userArray)

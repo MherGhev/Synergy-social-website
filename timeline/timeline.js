@@ -68,9 +68,7 @@ const displayPosts = (postsArr) => {
     if (postsArr) {
         let posts = []
         for (let p of postsArr) {
-            // if (p.username != loggedInUser && loggedInUser.followings.indexOf(JSON.parse(localStorage.getItem(p.username))) != -1) {
             posts.push(p)
-            // }
         }
         console.log(posts)
         const htmlString = posts.map((post, index) => {
@@ -78,8 +76,7 @@ const displayPosts = (postsArr) => {
         <div class="post-card">
             <div class="content-header">
                 <div class="profile">
-                    <img src="" alt="pic">
-                    <span class="post-user">${posts[index].username} ${posts[index].username}</span>
+                    <span class="post-user">${posts[index].username}</span>
                 </div>
             </div>
             <div class="post-content">
@@ -104,18 +101,15 @@ const displayPosts = (postsArr) => {
 
 searchedUsers.style.display = "none"
 
-let post1 = new Post("a", "pictures/profile.png", "ahaha");
-let post2 = new Post("a", "pictures/profile.png", "ahaha");
 
 localStorage.setItem("posts", JSON.stringify(Post.postArray));
 
 
-if (localStorage.getItem("posts")) {
-    let postsArr = JSON.parse(localStorage.getItem("posts"))
-    // console.log(postsArr)
-    // postsArr.sort((a, b) => a.date - b.date)
-    displayPosts(postsArr)
-}
+let postsArr = JSON.parse(localStorage.getItem("posts"))
+// console.log(postsArr)
+// postsArr.sort((a, b) => a.date - b.date)
+displayPosts(postsArr)
+
 
 
 
@@ -166,9 +160,8 @@ const displaySearchedUsers = (usersArr) => {
 document.querySelectorAll(".like").forEach(occurence => {
     occurence.addEventListener("click", e => {
         console.log("dd");
-        let liked;
 
-        for (let post of JSON.parse(localStorage.getItem("posts"))) {
+        for (let post of postsArr) {
 
             console.log("aa");
             if (post.id == e.target.id) {
@@ -176,7 +169,6 @@ document.querySelectorAll(".like").forEach(occurence => {
                 if (post.usersLiked.indexOf(loggedInUser) != - 1) {
                     console.log("cc");
 
-                    liked = false;
                     post.likes--;
                     post.usersLiked.splice(post.usersLiked.indexOf(loggedInUser), 1)
                     occurence.children[0].style.color = " #c8c6e2";
@@ -184,7 +176,6 @@ document.querySelectorAll(".like").forEach(occurence => {
                 } else {
                     console.log("tt");
 
-                    liked = true;
                     post.likes++;
                     post.usersLiked.push(loggedInUser)
                     console.log(post.usersLiked);
@@ -201,7 +192,6 @@ let header_username = document.getElementById("header-username")
 let profile_img = document.getElementById("profile-pic")
 
 header_username.innerHTML = `${JSON.parse(localStorage.getItem("loggedInUser")).fName} ${JSON.parse(localStorage.getItem("loggedInUser")).lName}`
-profile_img.src = `${JSON.parse(localStorage.getItem("loggedInUser")).profileImage}`
 
 let logout = document.querySelector(".logout-btn")
 
@@ -209,3 +199,4 @@ let logout = document.querySelector(".logout-btn")
 profile_img.addEventListener("click", () => {
     window.location.href = "./profile-page/index.html"
 })
+
